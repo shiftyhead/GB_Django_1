@@ -1,0 +1,24 @@
+{% extends 'master.html' %}
+
+{% block page_styles %}
+{% include 'products/components/stylesheet.html' %}
+{% endblock %}
+
+{% block page_title %}
+Каталог
+{% endblock %}
+
+{% block page_content %}
+    <main class="p-2 flex-grow-1">
+      <div class="container">
+        <h3>Наша продукция</h3>
+        <div class="row">
+          {% for itm in items %}
+          <div class="col">
+              {% include 'products/components/product.html' with product=itm id=forloop.counter0 %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+{% endblock %}

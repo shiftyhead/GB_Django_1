@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+
+{% block page_styles %}
+{% include 'products/components/stylesheet.html' %}
+{% endblock %}
+
+{% block page_title %}
+Каталог
+{% endblock %}
+
+{% block page_content %}
+    <main class="p-2 flex-grow-1">
+      <div class="container">
+        <h3>{{ product_title }}</h3>
+        <div class="row">
+          <!-- <div class="col">
+            <img src="img/spilka.png" class="img-fluid border" alt="">
+          </div> -->
+          <div class="col">
+            <p>{{ product_text }}</p>
+            <!-- <a href="docs/ОСТ 26-2038-96.pdf" class="badge badge-light">
+              <img src="img/pdf.png" width="38" alt="">
+              ОСТ 26-2038-96
+            </a> -->
+          </div>
+        </div>
+      </div>
+    </main>
+{% endblock %}
