@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 # import json
 from .models import ProductCategory, Product
 
@@ -17,7 +17,7 @@ def product_detail(request, pk):
     # with open('products/static/products/json/items.json') as json_file:
         # context = json.load(json_file)
 
-    context = Product.objects.get(id=pk)
+    # obj = Product.objects.get(id=pk)
+    obj = {'instance': get_object_or_404(Product, id=pk)}
 
-    return render(request, 'products/detail.html', {'product_title': context.name,
-                                                    'product_text': context.snippet})
+    return render(request, 'products/detail.html', obj)

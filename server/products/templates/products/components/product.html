@@ -1,4 +1,4 @@
-<a href="{% url 'products:detail' pk=id %}">
-  <!-- <img src="img/spilka.png" class="img-fluid border" alt=""> -->
-  {{product|title|add:'...'}}
+<a href="{% url 'products:detail' pk=product.id %}">
+  <img src="{{ product.image }}" class="img-fluid border" alt="">
+  {{ product|title|add:'...' }}
 </a>

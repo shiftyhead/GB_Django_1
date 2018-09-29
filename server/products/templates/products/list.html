@@ -16,7 +16,7 @@
         <div class="row">
           {% for itm in items %}
           <div class="col">
-              {% include 'products/components/product.html' with product=itm id=forloop.counter %}
+              {% include 'products/components/product.html' with product=itm %}
           </div>
           {% endfor %}
         </div>
