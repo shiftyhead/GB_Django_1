@@ -1,4 +1,4 @@
 <a href="{% url 'products:detail' pk=product.id %}">
-  <img src="{{ product.image }}" class="img-fluid border" alt="">
+  <img src="/media/{{ product.image.value }}" class="img-fluid border" alt="">
   {{ product|title|add:'...' }}
 </a>

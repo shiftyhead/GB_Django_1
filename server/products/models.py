@@ -28,11 +28,10 @@ class Product(models.Model):
         max_length=128
     )
 
-    image = models.ImageField(
-        upload_to='products_images',
-        blank=True
+    image = models.ForeignKey(
+        'images.Image',
+        on_delete=models.PROTECT,
     )
-
 
     snippet = models.TextField(
         verbose_name='описание',
