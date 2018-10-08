@@ -5,19 +5,25 @@
 {% endblock %}
 
 {% block page_title %}
-Каталог
+{{ title }}
 {% endblock %}
 
 {% block page_content %}
     <main class="p-2 flex-grow-1">
       <div class="container">
         <h3>Наша продукция</h3>
-
+        <div class="row">
+          {% for cat in links_menu %}
+            <div class="col">
+                {% include 'products/components/category.html' with category=cat %}
+            </div>
+          {% endfor %}
+        </div>
         <div class="row">
           {% for itm in items %}
-          <div class="col">
-              {% include 'products/components/product.html' with product=itm %}
-          </div>
+            <div class="col">
+                {% include 'products/components/product.html' with product=itm %}
+            </div>
           {% endfor %}
         </div>
       </div>
