@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 # import json
 from .models import ProductCategory, Product
+from basket.models import Basket
 
 def product_list(request, pk=None):
     title = 'продукты'
     links_menu = ProductCategory.objects.all()
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+        print(basket)
     if pk:
         category = ProductCategory.objects.filter(id=pk).order_by('name')
         products = Product.objects.filter(category__id=pk).order_by('name')
@@ -12,7 +17,8 @@ def product_list(request, pk=None):
             'title': title,
             'links_menu': links_menu,
             'categories': category,
-            'items': products
+            'items': products,
+            'basket': basket,
         }
 
     else:
@@ -20,7 +26,8 @@ def product_list(request, pk=None):
         context = {
             'title': title,
             'links_menu': links_menu,
-            'items': products
+            'items': products,
+            'basket': basket,
         }
     return render(request, 'products/list.html', context)
 

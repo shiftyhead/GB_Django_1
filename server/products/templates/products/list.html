@@ -18,6 +18,11 @@
                 {% include 'products/components/category.html' with category=cat %}
             </div>
           {% endfor %}
+          <div class="col">
+            {% if basket %}
+              {{ basket|length }}
+            {% endif %}
+          </div>
         </div>
         <div class="row">
           {% for itm in items %}
