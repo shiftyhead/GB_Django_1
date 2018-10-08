@@ -1,0 +1,23 @@
+{% extends 'master.html' %}
+
+{% block page_styles %}
+{% include 'products/components/stylesheet.html' %}
+{% endblock %}
+
+{% block page_title %}
+Каталог
+{% endblock %}
+
+{% block page_content %}
+    <main class="p-2 flex-grow-1">
+      <div class="container">
+        <h3>Enter</h3>
+
+        <div class="row">
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+    </main>
+{% endblock %}
