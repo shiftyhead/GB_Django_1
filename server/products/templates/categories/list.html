@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="row">
-          {% for itm in object_list %}
+          {% for itm in items %}
             <div class="col">
                 {% include 'products/components/product.html' with product=itm %}
             </div>
@@ -35,7 +35,7 @@
           <a href="{% url 'categories:create' %}">добавить категорию</a>
         </div>
         <div class="row">
-          <a href="{% url 'products:create' %}">добавить продукт</a>
+          <a href="{% url 'products:create' %}">добавить продукт</a>          
         </div>
       </div>
     </main>

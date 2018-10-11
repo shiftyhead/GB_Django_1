@@ -3,6 +3,39 @@ from django.urls import reverse_lazy
 from products.models import ProductCategory, Product
 from products.forms import CategoryModelForm
 from basket.models import Basket
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+
+class CategoryGenericList(ListView):
+
+    model = ProductCategory
+    template_name = 'categories/list.html'
+    context_object_name = 'items'
+
+class CategoryGenericDetail(DetailView):
+
+    model = ProductCategory
+    template_name = 'categories/detail.html'
+    context_object_name = 'items'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        instance = context.get('object')
+        context[self.context_object_name] = instance.product_set.all()
+        return context
+
+class CategoryGenericCreate(CreateView):
+
+    model = ProductCategory
+    form_class = CategoryModelForm
+    template_name = 'products/create.html'
+    success_url = reverse_lazy('products:list')
+
+class CategoryGenericUpdate(UpdateView):
+
+    model = ProductCategory
+    form_class = CategoryModelForm
+    template_name = 'products/create.html'
+    success_url = reverse_lazy('products:list')
 
 def category_create(request):
 
