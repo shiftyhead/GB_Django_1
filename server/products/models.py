@@ -38,5 +38,11 @@ class Product(models.Model):
         blank=True
     )
 
+    cost = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        default=0
+    )
+    
     def __str__(self):
         return self.name

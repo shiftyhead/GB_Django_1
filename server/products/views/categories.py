@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from products.models import ProductCategory, Product
 from products.forms import CategoryModelForm
 from basket.models import Basket
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 class CategoryGenericList(ListView):
 
@@ -35,6 +35,11 @@ class CategoryGenericUpdate(UpdateView):
     model = ProductCategory
     form_class = CategoryModelForm
     template_name = 'products/create.html'
+    success_url = reverse_lazy('products:list')
+
+class CategoryGenericDelete(DeleteView):
+    model = ProductCategory
+    template_name = 'products/delete.html'
     success_url = reverse_lazy('products:list')
 
 def category_create(request):

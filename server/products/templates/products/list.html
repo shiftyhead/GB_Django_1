@@ -19,9 +19,12 @@
             </div>
           {% endfor %}
           <div class="col">
-            {% if basket %}
-              {{ basket|length }}
-            {% endif %}
+            <a href="{% url 'basket:list' %}">
+              {% if basket %}
+                {{ basket.0.total_cost|floatformat:0 }} руб
+                {{ basket.0.total_quantity }} шт
+              {% endif %}
+            </a>
           </div>
         </div>
         <div class="row">

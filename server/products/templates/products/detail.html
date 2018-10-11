@@ -19,6 +19,12 @@
           <div class="col">
             <p>{{ instance.snippet }}</p>
           </div>
+          <div class="col">
+            <p>{{ instance.cost }}</p>
+          </div>
+          <div class="col">
+            <a href="{% url 'basket:add' pk=instance.id %}">добавить в корзину</a>
+          </div>
         </div>
 
       </div>

@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% block page_styles %}
+{% include 'products/components/stylesheet.html' %}
+{% endblock %}
+
+{% block page_title %}
+{{ title }}
+{% endblock %}
+
+{% block page_content %}
+    <main class="p-2 flex-grow-1">
+      <div class="container">
+        <h3>Корзина</h3>
+        <div class="row">
+          {% for itm in items %}
+            <div class="col">
+              <a href="{% url 'basket:delete' pk=itm.id %}">
+                {{ itm|title|add:': удалить' }}
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+{% endblock %}
