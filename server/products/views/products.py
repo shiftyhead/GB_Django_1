@@ -18,6 +18,7 @@ class ProductGenericList(ListView):
             context['basket'] = Basket.objects.filter(user=self.request.user)
         return context
 
+
 class ProductGenericDetail(DetailView):
 
     model = Product
