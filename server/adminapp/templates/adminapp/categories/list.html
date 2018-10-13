@@ -11,19 +11,18 @@
 {% block page_content %}
     <main class="p-2 flex-grow-1">
       <div class="container">
-        <h3>Наша продукция (admin)</h3>
+        <h3>Категории (admin)</h3>
         <div class="row">
           {% for itm in object_list %}
             <div class="col">
-              <a href="{% url 'subd:product_detail' pk=itm.id %}">
-                <img src="/media/{{ itm.image.value }}" class="img-fluid border" alt="">
+              <a href="{% url 'subd:category_detail' pk=itm.id %}">
                 {{ itm|title|add:'...!' }}
               </a>
               <div class="">
-                <a href="{% url 'subd:product_update' pk=itm.id %}">редактировать</a>
+                <a href="{% url 'subd:category_update' pk=itm.id %}">редактировать</a>
               </div>
               <div class="">
-                <a href="{% url 'subd:product_delete' pk=itm.id %}">удалить</a>
+                <a href="{% url 'subd:category_delete' pk=itm.id %}">удалить</a>
               </div>
             </div>
           {% endfor %}
