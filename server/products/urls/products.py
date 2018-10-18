@@ -6,7 +6,9 @@ from products.views.products import (
 )
 
 app_name = 'products'
-
+endpointspatterns = [
+    path('api/products/', product_list, name='list_api')
+]
 urlpatterns = [
     path('create/', ProductGenericCreate.as_view(), name='create'),
     path('<int:pk>/', ProductGenericDetail.as_view(), name='detail'),
@@ -14,4 +16,4 @@ urlpatterns = [
     path('', ProductGenericList.as_view(), name='list'),
     path('delete/<int:pk>/', ProductGenericDelete.as_view(), name='delete'),
 
-]
+] + endpointspatterns

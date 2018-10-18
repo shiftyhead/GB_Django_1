@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'basket',
     'products',
     'images',
@@ -45,6 +46,11 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 9
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,7 +141,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'server', 'static'),
+    os.path.join(BASE_DIR, 'server', 'static'),
 ]
 
 
