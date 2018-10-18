@@ -5,6 +5,28 @@ from django.http import HttpResponse
 from basket.models import Basket
 from products.forms import ProductModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+def products_pages(request, page=1):
+    products = Product.objects.all()
+    paginator = Paginator(products, 3)
+    try:
+        products_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        products_paginator = paginator.page(1)
+    except EmptyPage:
+        products_paginator = paginator.page(paginator.num_pages)
+
+    context = {
+        'title': 'продукция',
+        'links_menu': ProductCategory.objects.all(),
+        'object_list': products_paginator
+    }
+    if request.user.is_authenticated:
+        context['basket'] = Basket.objects.filter(user=request.user)
+
+    return render(request, 'products/list.html', context)
 
 class ProductGenericList(ListView):
 

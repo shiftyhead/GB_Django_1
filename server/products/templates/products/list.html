@@ -35,6 +35,24 @@
           {% endfor %}
         </div>
         <div class="row">
+          <div class="col">
+            {% if object_list.has_previous %}
+            <a href="{% url 'products:list' object_list.previous_page_number%}">Previous</a>
+            {% endif %}
+          </div>
+          <div class="col">
+            <span class="current">
+              Page {{ object_list.number }} из {{ object_list.paginator.num_pages }}
+            </span>
+          </div>
+          <div class="col">
+            {% if object_list.has_next %}
+            <a href="{% url 'products:list' object_list.next_page_number%}">Next</a>
+            {% endif %}
+          </div>
+
+        </div>
+        <div class="row">
           <a href="{% url 'categories:create' %}">добавить категорию</a>
         </div>
         <div class="row">

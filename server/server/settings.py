@@ -49,7 +49,7 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 9
+    'PAGE_SIZE': 3
 }
 
 MIDDLEWARE = [
