@@ -5,23 +5,19 @@
 {% endblock %}
 
 {% block page_title %}
-{{ title }}
+Каталог
 {% endblock %}
 
 {% block page_content %}
     <main class="p-2 flex-grow-1">
       <div class="container">
-        <h3>Наша продукция</h3>
+        <h3>{{ instance.name }}</h3>
         <div class="row">
-          {% for cat in links_menu %}
-            <div class="col">
-                {% include 'products/components/category.html' with category=cat %}
-            </div>
-          {% endfor %}
           <div class="col">
-            {% if basket %}
-              {{ basket|length }}
-            {% endif %}
+            <img src="/media/{{ instance.image.value }}" class="img-fluid border" alt="">
+          </div>
+          <div class="col">
+            <p>{{ instance.snippet }}</p>
           </div>
         </div>
         <div class="row">
@@ -30,12 +26,6 @@
                 {% include 'products/components/product.html' with product=itm %}
             </div>
           {% endfor %}
-        </div>
-        <div class="row">
-          <a href="{% url 'categories:create' %}">добавить категорию</a>
-        </div>
-        <div class="row">
-          <a href="{% url 'products:create' %}">добавить продукт</a>          
         </div>
       </div>
     </main>
