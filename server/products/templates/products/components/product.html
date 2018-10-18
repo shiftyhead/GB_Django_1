@@ -1,4 +1,7 @@
+{% load my_tags %}
+
 <a href="{% url 'products:detail' pk=product.id %}">
   <img src="/media/{{ product.image.value }}" class="img-fluid border" alt="">
   {{ product|title|add:'...' }}
+  {{ product|cat_name }}
 </a>

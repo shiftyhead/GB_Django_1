@@ -47,6 +47,8 @@ class ProductGenericDetail(DetailView):
     template_name = 'products/detail.html'
     context_object_name = 'instance'
 
+
+
 class ProductGenericCreate(CreateView):
 
     model = Product
