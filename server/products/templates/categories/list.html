@@ -19,16 +19,19 @@
             </div>
           {% endfor %}
           <div class="col">
-            <a href="{% url 'basket:list' %}">
-              {% if basket %}
-                {{ basket.0.total_cost|floatformat:0 }} руб
-                {{ basket.0.total_quantity }} шт
-              {% endif %}
-            </a>
+            {% if basket %}
+              <a href="{% url 'basket:list' %}">
+                {% if basket %}
+                  {{ basket.0.total_cost|floatformat:0 }} руб
+                  {{ basket.0.total_quantity }} шт
+                {% endif %}
+              </a>
+
+            {% endif %}
           </div>
         </div>
         <div class="row">
-          {% for itm in object_list %}
+          {% for itm in items %}
             <div class="col">
                 {% include 'products/components/product.html' with product=itm %}
             </div>

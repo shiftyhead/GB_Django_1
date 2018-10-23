@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products.urls.products')),
     path('categories/', include('products.urls.categories')),
-    re_path(r'^basket/', include('basket.urls', namespace='basket')),
+    path('basket/', include('basket.urls', namespace='basket')),
     re_path(r'^auth/', include('authapp.urls', namespace='auth')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,34 +5,38 @@
 {% endblock %}
 
 {% block page_title %}
-Create View
+Создать
 {% endblock %}
 
 {% block page_content %}
+<main class="p-2 flex-grow-1">
+  <div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    {% for err in form.not_field_errors %}
-        <div class="alert alert-danger" role="alert">
-            <span>{{ err}}</span>
-        </div>
-    {% endfor %}
-
-    {% for field in form %}
-    <div class="form-group">
-        <label for="{{ field.name }}">
-            {{ field.label }}
-        </label>
-        {{ field }}
-
-        {% for err in field.errors %}
-            <small class="form-text">{{ err }}</small>
+        {% for err in form.not_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                <span>{{ err}}</span>
+            </div>
         {% endfor %}
 
-    </div>
-    {% endfor %}
-    <input type="submit" value="Submit">
-</form>
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.name }}">
+                {{ field.label }}
+            </label>
+            {{ field }}
+
+            {% for err in field.errors %}
+                <small class="form-text">{{ err }}</small>
+            {% endfor %}
+
+        </div>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+</main>
+
 
 {% endblock %}

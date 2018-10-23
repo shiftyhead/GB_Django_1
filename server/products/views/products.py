@@ -4,6 +4,44 @@ from products.models import ProductCategory, Product
 from django.http import HttpResponse
 from basket.models import Basket
 from products.forms import ProductModelForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+class ProductGenericList(ListView):
+
+    model = Product
+    template_name = 'products/list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['links_menu'] = ProductCategory.objects.all()
+        if self.request.user.is_authenticated:
+            context['basket'] = Basket.objects.filter(user=self.request.user)
+        return context
+
+class ProductGenericDetail(DetailView):
+
+    model = Product
+    template_name = 'products/detail.html'
+    context_object_name = 'instance'
+
+class ProductGenericCreate(CreateView):
+
+    model = Product
+    form_class = ProductModelForm
+    template_name = 'products/create.html'
+    success_url = reverse_lazy('products:list')
+
+class ProductGenericUpdate(UpdateView):
+
+    model = Product
+    form_class = ProductModelForm
+    template_name = 'products/create.html'
+    success_url = reverse_lazy('products:list')
+
+class ProductGenericDelete(DeleteView):
+    model = Product
+    template_name = 'products/delete.html'
+    success_url = reverse_lazy('products:list')
 
 def product_list(request):
     title = 'продукты'

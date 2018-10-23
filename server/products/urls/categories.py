@@ -1,12 +1,16 @@
 from django.urls import path, re_path
 from products.views.categories import (
+    CategoryGenericList, CategoryGenericDetail,
+    CategoryGenericCreate, CategoryGenericUpdate, CategoryGenericDelete,
     category_create, category_detail, category_list,# category_update
 )
 app_name = 'categories'
 
 urlpatterns = [
-    path('create/', category_create, name='create'),
-    path('<int:pk>/', category_detail, name='detail'),
-    path('', category_list, name='list'),
-    # path('update/<int:pk>/', category_update, name='update'),
+    path('create/', CategoryGenericCreate.as_view(), name='create'),
+    path('<int:pk>/', CategoryGenericDetail.as_view(), name='detail'),
+    path('', CategoryGenericList.as_view(), name='list'),
+    path('update/<int:pk>/', CategoryGenericUpdate.as_view(), name='update'),
+    path('delete/<int:pk>/', CategoryGenericDelete.as_view(), name='delete'),
+
 ]

@@ -18,15 +18,15 @@
           </div>
           <div class="col">
             <p>{{ instance.snippet }}</p>
-            <!-- <a href="docs/ОСТ 26-2038-96.pdf" class="badge badge-light">
-              <img src="img/pdf.png" width="38" alt="">
-              ОСТ 26-2038-96
-            </a> -->
+          </div>
+          <div class="col">
+            <p>{{ instance.cost }}</p>
+          </div>
+          <div class="col">
+            <a href="{% url 'basket:add' pk=instance.id %}">добавить в корзину</a>
           </div>
         </div>
-        <div class="row">
-          <a href="{% url 'basket:add' instance.id %}">в корзину</a>
-        </div>
+
       </div>
     </main>
 {% endblock %}

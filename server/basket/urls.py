@@ -4,9 +4,9 @@ from . import views
 app_name = 'basket'
 
 urlpatterns = [
-    path('', views.basket_view, name='view'),
-    re_path(r'^add/(?P<pk>\d+)/$', views.basket_add, name='add'),
-    re_path(r'^remove/(?P<pk>\d+)/$', views.basket_remove, name='remove'),
+    path('', views.BasketGenericList.as_view(), name='list'),
+    path('add/<int:pk>/', views.basket_add, name='add'),
+    path('delete/<int:pk>/', views.BasketGenericDelete.as_view(), name='delete'),
 
 
 ]
