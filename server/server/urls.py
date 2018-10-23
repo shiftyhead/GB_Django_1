@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('products.urls.products')),
     path('categories/', include('products.urls.categories')),
     path('basket/', include('basket.urls', namespace='basket')),
-    re_path(r'^auth/', include('authapp.urls', namespace='auth')),
+    path('auth/', include('authapp.urls', namespace='auth')),
+    path('subd/', include('adminapp.urls', namespace='subd')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
