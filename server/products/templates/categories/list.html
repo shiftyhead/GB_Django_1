@@ -1,6 +1,7 @@
 {% extends 'master.html' %}
-
+{% load static %}
 {% block page_styles %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 {% include 'products/components/stylesheet.html' %}
 {% endblock %}
 
@@ -31,11 +32,9 @@
           </div>
         </div>
         <div class="row">
-          {% for itm in items %}
-            <div class="col">
-                {% include 'products/components/product.html' with product=itm %}
-            </div>
-          {% endfor %}
+          <div id="product__list">
+
+          </div>
         </div>
         <div class="row">
           <a href="{% url 'categories:create' %}">добавить категорию</a>
@@ -45,4 +44,13 @@
         </div>
       </div>
     </main>
+{% endblock %}
+
+{% block page_js %}
+<script type="text/javascript" src="{% static 'categories/products.js' %}"></script>
+
+<script>
+    axios.get('http://127.0.0.1:8000/api/products/')
+        .then(renderData)
+</script>
 {% endblock %}

@@ -18,12 +18,19 @@ from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
+from products.endpoints.products import ProductViewSet
+
+
+router = DefaultRouter()
+router.register('products', ProductViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('products.urls.products')),
     path('categories/', include('products.urls.categories')),
-    path('basket/', include('basket.urls', namespace='basket')),
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('api/', include(router.urls)),
+    path('basket/', include('basket.urls', namespace='basket')),
     path('subd/', include('adminapp.urls', namespace='subd')),
+    path('', include('products.urls.products')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

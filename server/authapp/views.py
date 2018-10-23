@@ -1,9 +1,33 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from .models import ShopUser
 from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
 from django.contrib import auth
 from django.urls import reverse
+from django.views.generic.edit import FormView
+
+
+class LoginView(FormView):
+    model = ShopUser
+    form_class = ShopUserLoginForm
+    template_name = 'authapp/login.html'
+    success_url = reverse_lazy('products:list')
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            usr = form.cleaned_data.get('username')
+            pwd = form.cleaned_data.get('password')
+
+            user = auth.authenticate(username=usr, password=pwd)
+
+            if user and user.is_active:
+                auth.login(request, user)
+                return redirect(self.success_url)
+
+        return render(request, self.template_name, {'form', form})
 
 def login(request):
     title = 'enter'

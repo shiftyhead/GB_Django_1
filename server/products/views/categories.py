@@ -5,6 +5,9 @@ from products.forms import CategoryModelForm
 from basket.models import Basket
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+def index(request):
+    return render(request, 'categories/list.html')
+
 class CategoryGenericList(ListView):
 
     model = ProductCategory

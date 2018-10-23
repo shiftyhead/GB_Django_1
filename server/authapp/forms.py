@@ -24,7 +24,7 @@ class ShopUserRegisterForm(UserCreationForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
 
-    def cleadn_age(self):
+    def cleaned_age(self):
         data = self.cleaned_data['age']
         if data < 18:
             raise formsValidationError("Too young...")
@@ -44,7 +44,7 @@ class ShopUserEditForm(UserChangeForm):
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
 
-    def cleadn_age(self):
+    def cleaned_age(self):
         data = self.cleaned_data['age']
         if data < 18:
             raise formsValidationError("Too young...")
